@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="BonfimSystems Test Suite">
+        <testsuite name="Bonfim\Component\Database Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

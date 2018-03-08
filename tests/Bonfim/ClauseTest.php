@@ -1,10 +1,12 @@
 <?php
 
+namespace Tests;
+
 use PHPUnit\Framework\TestCase;
 
 class ClauseTest extends TestCase
 {
-    use Bonfim\Component\Database\Clause;
+    use \Bonfim\Component\Database\Clause;
 
     public function testWhere()
     {

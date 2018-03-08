@@ -1,10 +1,12 @@
 <?php
 
+namespace Tests;
+
 use PHPUnit\Framework\TestCase;
 
 class KeywordTest extends TestCase
 {
-    use Bonfim\Component\Database\Keyword;
+    use \Bonfim\Component\Database\Keyword;
 
     public function testOrderBy()
     {

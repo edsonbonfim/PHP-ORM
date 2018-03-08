@@ -1,10 +1,12 @@
 <?php
 
+namespace Tests;
+
 use PHPUnit\Framework\TestCase;
 
 class StatementTest extends TestCase
 {
-    use Bonfim\Component\Database\Statement;
+    use \Bonfim\Component\Database\Statement;
 
     public function testCreate()
     {
@@ -13,7 +15,8 @@ class StatementTest extends TestCase
             'login'    => 'edsononildo',
             'password' => 1234
         ]);
-        $this->assertEquals('INSERT INTO `users` (`name`, `login`, `password`) VALUES (:name, :login, :password)', $this->statement);
+        $expected = 'INSERT INTO `users` (`name`, `login`, `password`) VALUES (:name, :login, :password)';
+        $this->assertEquals($expected, $this->statement);
     }
 
     public function testAll()
@@ -39,7 +42,8 @@ class StatementTest extends TestCase
             'login'    => 'admin',
             'password' => 4321
         ]);
-        $this->assertEquals('UPDATE `users` SET `name` = :name, `login` = :login, `password` = :password', $this->statement);
+        $expected = 'UPDATE `users` SET `name` = :name, `login` = :login, `password` = :password';
+        $this->assertEquals($expected, $this->statement);
     }
 
     public function testDelete()
