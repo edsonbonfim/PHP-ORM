@@ -38,17 +38,17 @@ If you discover any security related issues, please email edsononildo@bonfimsyst
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/BonfimSystems/database.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/BonfimSystems/Database.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/BonfimSystems/database/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/BonfimSystems/database.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/BonfimSystems/database.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/BonfimSystems/database.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/BonfimSystems/Database/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/BonfimSystems/Database.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/BonfimSystems/Database.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/BonfimSystems/Database.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/BonfimSystems/database
-[link-travis]: https://travis-ci.org/BonfimSystems/database
-[link-scrutinizer]: https://scrutinizer-ci.com/g/BonfimSystems/database/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/BonfimSystems/database
-[link-downloads]: https://packagist.org/packages/BonfimSystems/database
+[link-packagist]: https://packagist.org/packages/BonfimSystems/Database
+[link-travis]: https://travis-ci.org/BonfimSystems/Database
+[link-scrutinizer]: https://scrutinizer-ci.com/g/BonfimSystems/Database/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/BonfimSystems/Database
+[link-downloads]: https://packagist.org/packages/BonfimSystems/Database
 [link-author]: https://github.com/EdsonOnildoJR
 [link-contributors]: ../../contributors
