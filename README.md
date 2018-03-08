@@ -1,8 +1,5 @@
-<p align="center">
 # Bonfim Database Component
-</p>
 
-<p align="center">
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
@@ -10,7 +7,6 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 [![StyleCI][ico-styleci]][link-styleci]
-</p>
 
 ## Install
 
