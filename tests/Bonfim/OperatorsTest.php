@@ -4,7 +4,7 @@ namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 
-class Operators extends TestCase
+class OperatorsTest extends TestCase
 {
     use \Bonfim\Component\Database\Operators;
 
