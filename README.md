@@ -1,25 +1,19 @@
-# Bonfim Database Component
+# Keep-ORM
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE.md)
+[![Latest Version][ico-version]][link-version]
 [![Build Status][ico-travis]][link-travis]
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
-[![Total Downloads][ico-downloads]][link-downloads]
 [![StyleCI][ico-styleci]][link-styleci]
+
+Do a lot with very little, an elegant ORM for PHP
 
 ## Install
 
 Via Composer
 
-``` bash
-$ composer require bonfim/database
-```
-
-## Testing
-
-``` bash
-$ composer test
+``` sh
+$ composer require edsononildo/keep-orm
 ```
 
 ## Contributing
@@ -28,7 +22,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT
 
 ## Security
 
-If you discover any security related issues, please email edsononildo@bonfimsystems.com instead of using the issue tracker.
+If you discover any security related issues, please email inbox.edsononildo@gmail.com instead of using the issue tracker.
 
 ## Credits
 
@@ -39,19 +33,16 @@ If you discover any security related issues, please email edsononildo@bonfimsyst
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/bonfim/database.svg?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/BonfimSystems/Database/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/BonfimSystems/Database.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/BonfimSystems/Database.svg?style=flat-square
-[ico-styleci]: https://styleci.io/repos/124445597/shield?branch=master
-[ico-downloads]: https://img.shields.io/packagist/dt/bonfim/database.svg?style=flat-square
+[ico-version]: https://img.shields.io/github/release/EdsonOnildoJR/Keep-ORM.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/EdsonOnildoJR/Keep-ORM/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/EdsonOnildoJR/Keep-ORM.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/EdsonOnildoJR/Keep-ORM.svg?style=flat-square
+[ico-styleci]: https://styleci.io/repos/{styleci}/shield?branch=master
 
-[link-packagist]: https://packagist.org/packages/bonfim/database
-[link-travis]: https://travis-ci.org/BonfimSystems/Database
-[link-scrutinizer]: https://scrutinizer-ci.com/g/BonfimSystems/Database/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/BonfimSystems/Database
-[link-styleci]: https://styleci.io/repos/124445597
-[link-downloads]: https://packagist.org/packages/bonfim/database
+[link-version]:https://github.com/EdsonOnildoJR/Keep-ORM/releases
+[link-travis]: https://travis-ci.org/EdsonOnildoJR/Keep-ORM
+[link-scrutinizer]: https://scrutinizer-ci.com/g/EdsonOnildoJR/Keep-ORM/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/EdsonOnildoJR/Keep-ORM
+[link-styleci]: https://styleci.io/repos/124528765
 [link-author]: https://github.com/EdsonOnildoJR
-[link-contributors]: ../../contributors
+[link-contributors]: https://github.com/EdsonOnildoJR/Keep-ORM/contributors

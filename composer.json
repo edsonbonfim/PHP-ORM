@@ -1,21 +1,13 @@
 {
-    "name": "bonfim/database",
+    "name": "edsononildo/keep-orm",
     "type": "library",
-    "description": "Bonfim Database Component.",
-    "keywords": [
-        "BonfimSystems",
-        "Bonfim",
-        "database",
-        "ORM",
-        "DAO",
-        "PHP"
-    ],
-    "homepage": "https://github.com/BonfimSystems/database",
+    "description": "Do a lot with very little, an elegant ORM for PHP",
+    "homepage": "https://github.com/EdsonOnildoJR/Keep-ORM",
     "license": "MIT",
     "authors": [
         {
             "name": "Edson Onildo",
-            "email": "edsononildo@bonfimsystems.com",
+            "email": "inbox.edsononildo@gmail.com",
             "homepage": "https://github.com/EdsonOnildoJR",
             "role": "Developer"
         }
@@ -29,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Bonfim\\Component\\Database\\": "src/Bonfim/"
+            "Bonfim\\": "src/Bonfim/"
         }
     },
     "autoload-dev": {
@@ -39,6 +31,7 @@
     },
     "scripts": {
         "test": "phpunit",
+        "example": "php -S localhost:3000 -t example",
         "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
         "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
     },

@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 
-Copyright (c) 2018 BonfimSystems <support@bonfimsystems.com>
+Copyright (c) 2018 Keep-ORM
 
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
