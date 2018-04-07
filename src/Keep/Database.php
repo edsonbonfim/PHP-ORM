@@ -1,6 +1,6 @@
 <?php
 
-namespace Bonfim\Component\Database;
+namespace Keep;
 
 use PDO;
 use PDOStatement;
@@ -42,22 +42,40 @@ class Database
         return $this->exec->fetch(PDO::FETCH_OBJ);
     }
 
-    public function exec(): ?Database
+    public function fetchAll()
+    {
+        return $this->exec->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function exec()
     {
         if ($this->exec->execute()) {
-            return $this;
+            return $this->exec;
         }
 
         return null;
     }
 
-    public function execute(): ?Database
+    public function execute()
     {
-        return $this->prepare()->bind()->exec();
+        $execute = $this->prepare()->bind()->exec();
+
+        $this->reset();
+
+        return $execute;
     }
 
     public function getQuery(): string
     {
-        return $this->statement.' '.$this->clause.$this->operators.$this->keyword;
+        return trim($this->statement.' '.$this->clause.' '.$this->operators.' '.$this->keyword);
+    }
+
+    public function reset()
+    {
+        $this->statement = '';
+        $this->clause = '';
+        $this->operators = '';
+        $this->keyword = '';
+        $this->attributes = [];
     }
 }

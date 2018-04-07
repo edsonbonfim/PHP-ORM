@@ -1,6 +1,6 @@
 <?php
 
-namespace Bonfim\Component\Database;
+namespace Keep;
 
 class DB
 {

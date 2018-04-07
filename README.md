@@ -1,4 +1,4 @@
-# Keep-ORM
+# Keep
 
 [![Latest Version][ico-version]][link-version]
 [![Build Status][ico-travis]][link-travis]
@@ -13,7 +13,7 @@ Do a lot with very little, an elegant ORM for PHP
 Via Composer
 
 ``` sh
-$ composer require edsononildo/keep-orm
+$ composer require keeporm/keep
 ```
 
 ## Contributing

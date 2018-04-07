@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class StatementTest extends TestCase
 {
-    use \Bonfim\Component\Database\Statement;
+    use \Keep\Statement;
 
     public function testCreate()
     {

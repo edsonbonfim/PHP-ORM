@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class ClauseTest extends TestCase
 {
-    use \Bonfim\Component\Database\Clause;
+    use \Keep\Clause;
 
     public function testWhere()
     {

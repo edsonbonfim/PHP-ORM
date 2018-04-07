@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class OperatorsTest extends TestCase
 {
-    use \Bonfim\Component\Database\Operators;
+    use \Keep\Operators;
 
     public function testAnd()
     {

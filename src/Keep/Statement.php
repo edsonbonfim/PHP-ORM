@@ -1,6 +1,6 @@
 <?php
 
-namespace Bonfim\Component\Database;
+namespace Keep;
 
 trait Statement
 {
@@ -10,7 +10,7 @@ trait Statement
     public function create(string $table, array $attributes): self
     {
         $this->attributes = $attributes;
-        $this->statement  = "INSERT INTO `{$table}` (`";
+        $this->statement  = 'INSERT INTO `' . $table . '` (`';
         $this->statement .= Tool::getAttributesKey($attributes);
         $this->statement .= '`) VALUES (:';
         $this->statement .= Tool::getAttributesValue($attributes) . ')';
@@ -31,6 +31,8 @@ trait Statement
 
     public function update(string $table, array $attributes): self
     {
+        $this->attributes = $attributes;
+
         $set = '';
         $key = array_keys($attributes);
         $pop = array_pop($key);
@@ -42,6 +44,7 @@ trait Statement
         $set .= "`{$pop}` = :{$pop}";
 
         $this->statement = "UPDATE `{$table}` SET {$set}";
+
         return $this;
     }
 

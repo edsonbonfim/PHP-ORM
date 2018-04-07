@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class KeywordTest extends TestCase
 {
-    use \Bonfim\Component\Database\Keyword;
+    use \Keep\Keyword;
 
     public function testOrderBy()
     {

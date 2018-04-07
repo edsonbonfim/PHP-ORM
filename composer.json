@@ -1,5 +1,5 @@
 {
-    "name": "edsononildo/keep-orm",
+    "name": "keep/keep",
     "type": "library",
     "description": "Do a lot with very little, an elegant ORM for PHP",
     "homepage": "https://github.com/EdsonOnildoJR/Keep-ORM",
@@ -21,12 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Bonfim\\": "src/Bonfim/"
+            "Keep\\": "src/Keep/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/Bonfim/"
+            "Tests\\": "tests/Keep/"
         }
     },
     "scripts": {
