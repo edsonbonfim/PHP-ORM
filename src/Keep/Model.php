@@ -35,10 +35,20 @@ class Model
         $obj = get_called_class();
         $obj = new $obj;
 
-        $find = DB::all(self::getTable())
+        if (is_null($operator))
+        {
+            $find = DB::all(self::getTable())
+                ->where(array_values(array_filter($explode))[0], $attributes[0])
+                ->execute();
+        }
+
+        else
+        {
+            $find = DB::all(self::getTable())
             ->where(array_values(array_filter($explode))[0], $attributes[0])
             ->$operator(@array_values(array_filter($explode))[2], @$attributes[1])
             ->execute();
+        }
 
         if ($find->rowCount() === 0) {
             return null;
