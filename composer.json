@@ -1,5 +1,5 @@
 {
-    "name": "keep/keep",
+    "name": "keeporm/keep",
     "type": "library",
     "description": "Do a lot with very little, an elegant ORM for PHP",
     "homepage": "https://github.com/EdsonOnildoJR/Keep-ORM",
