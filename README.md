@@ -33,16 +33,16 @@ If you discover any security related issues, please email inbox.edsononildo@gmai
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/github/release/EdsonOnildoJR/Keep-ORM.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/EdsonOnildoJR/Keep-ORM/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/EdsonOnildoJR/Keep-ORM.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/EdsonOnildoJR/Keep-ORM.svg?style=flat-square
+[ico-version]: https://img.shields.io/github/release/EdsonOnildoJR/Keep.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/EdsonOnildoJR/Keep/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/EdsonOnildoJR/Keep.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/EdsonOnildoJR/Keep.svg?style=flat-square
 [ico-styleci]: https://styleci.io/repos/124445597/shield?branch=master
 
-[link-version]:https://github.com/EdsonOnildoJR/Keep-ORM/releases
-[link-travis]: https://travis-ci.org/EdsonOnildoJR/Keep-ORM
-[link-scrutinizer]: https://scrutinizer-ci.com/g/EdsonOnildoJR/Keep-ORM/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/EdsonOnildoJR/Keep-ORM
+[link-version]:https://github.com/EdsonOnildoJR/Keep/releases
+[link-travis]: https://travis-ci.org/EdsonOnildoJR/Keep
+[link-scrutinizer]: https://scrutinizer-ci.com/g/EdsonOnildoJR/Keep/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/EdsonOnildoJR/Keep
 [link-styleci]: https://styleci.io/repos/124445597
 [link-author]: https://github.com/EdsonOnildoJR
-[link-contributors]: https://github.com/EdsonOnildoJR/Keep-ORM/contributors
+[link-contributors]: https://github.com/EdsonOnildoJR/Keep/contributors
