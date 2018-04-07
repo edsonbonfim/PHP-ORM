@@ -100,6 +100,9 @@ class Model
 
     private static function getTable(): string
     {
-        return strtolower(get_called_class());
+        $table = explode('\\', strtolower(get_called_class()));
+        $table = $table[count($table) - 1];
+
+        return $table;
     }
 }
