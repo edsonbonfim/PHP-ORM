@@ -54,12 +54,21 @@ class Model
             return null;
         }
 
-        foreach ($find->fetch(PDO::FETCH_OBJ) as $key => $value) {
-            $obj->$key = $value;
+        if ($find->rowCount() === 1)
+        {
+            foreach ($find->fetch(PDO::FETCH_OBJ) as $key => $value) {
+                $obj->$key = $value;
+            }
+        }
+
+        else
+        {
+            $obj->attributes = $find->fetchAll(PDO::FETCH_OBJ);
         }
 
         return $obj;
     }
+
 
     public function save()
     {
