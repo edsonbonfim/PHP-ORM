@@ -35,15 +35,11 @@ class Model
         $obj = get_called_class();
         $obj = new $obj;
 
-        if (is_null($operator))
-        {
+        if (is_null($operator)) {
             $find = DB::all(self::getTable())
                 ->where(array_values(array_filter($explode))[0], $attributes[0])
                 ->execute();
-        }
-
-        else
-        {
+        } else {
             $find = DB::all(self::getTable())
             ->where(array_values(array_filter($explode))[0], $attributes[0])
             ->$operator(@array_values(array_filter($explode))[2], @$attributes[1])
@@ -54,15 +50,11 @@ class Model
             return null;
         }
 
-        if ($find->rowCount() === 1)
-        {
+        if ($find->rowCount() === 1) {
             foreach ($find->fetch(PDO::FETCH_OBJ) as $key => $value) {
                 $obj->$key = $value;
             }
-        }
-
-        else
-        {
+        } else {
             $obj->attributes = $find->fetchAll(PDO::FETCH_OBJ);
         }
 
