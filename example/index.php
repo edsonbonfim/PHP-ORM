@@ -13,28 +13,19 @@ DB::config([
     'host'   => 'localhost',
     'dbname' => 'keep',
     'user'   => 'root',
-    'pass'   => ''
+    'pass'   => '1234'
 ]);
 
 $conn = DB::conn();
 
-class Test extends Keep\Model
+class Post extends Keep\Model
 {
 }
 
-// $test = new Test;
-//
-// $test->id = 1;
-// $test->nome = "Test1";
-//
-// $save = $test->save();
+$post = Post::find_by_title_and_id('Post6', 6);
+$post->id = 7;
+$post->title = 'Post7';
+$post->author_name = 'Edson Onildo';
+$post->update();
 
-
-// $test = Test::find(1);
-// $test->delete();
-
-//$test = Test::find_by_nome_or_id('stest6', 1);
-//var_dump($test);
-
-
-//print_r(Test::all());
+var_dump($post);

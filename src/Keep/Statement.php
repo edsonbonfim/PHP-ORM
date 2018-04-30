@@ -2,11 +2,26 @@
 
 namespace Keep;
 
+/**
+ * Trait Statement
+ * @package Keep
+ */
 trait Statement
 {
+    /**
+     * @var
+     */
     private $statement;
+    /**
+     * @var array
+     */
     private $attributes = [];
 
+    /**
+     * @param string $table
+     * @param array $attributes
+     * @return self
+     */
     public function create(string $table, array $attributes): self
     {
         $this->attributes = $attributes;
@@ -17,18 +32,32 @@ trait Statement
         return $this;
     }
 
+    /**
+     * @param string $table
+     * @return self
+     */
     public function all(string $table): self
     {
         $this->statement = "SELECT * FROM `{$table}`";
         return $this;
     }
 
+    /**
+     * @param string $table
+     * @param array $columns
+     * @return self
+     */
     public function select(string $table, array $columns): self
     {
         $this->statement = 'SELECT `' . Tool::columns($columns) . "` FROM `{$table}`";
         return $this;
     }
 
+    /**
+     * @param string $table
+     * @param array $attributes
+     * @return self
+     */
     public function update(string $table, array $attributes): self
     {
         $this->attributes = $attributes;
@@ -48,6 +77,10 @@ trait Statement
         return $this;
     }
 
+    /**
+     * @param string $table
+     * @return self
+     */
     public function delete(string $table): self
     {
         $this->statement = "DELETE FROM `{$table}`";

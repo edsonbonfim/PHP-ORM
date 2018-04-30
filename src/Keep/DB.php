@@ -2,16 +2,35 @@
 
 namespace Keep;
 
+/**
+ * Class DB
+ * @package Keep
+ */
 class DB
 {
+    /**
+     * @var null
+     */
     private static $db = null;
+
+    /**
+     * @var
+     */
     private static $driver;
 
+    /**
+     * @param string $func
+     * @param array $params
+     * @return mixed
+     */
     public static function __callStatic(string $func, array $params)
     {
         return call_user_func_array([self::singleton(), $func], $params);
     }
 
+    /**
+     * @param array $config
+     */
     public static function config(array $config)
     {
         switch ($config['driver']) {
@@ -26,6 +45,9 @@ class DB
         self::singleton()->connection(self::$driver);
     }
 
+    /**
+     * @return Database
+     */
     public static function singleton(): Database
     {
         if (!isset(self::$db) || is_null(self::$db)) {
@@ -35,6 +57,9 @@ class DB
         return self::$db;
     }
 
+    /**
+     * @param array $config
+     */
     private static function mysql(array $config): void
     {
         $mysql = new Mysql;

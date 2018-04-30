@@ -6,6 +6,10 @@ use PDO;
 use PDOStatement;
 use stdClass;
 
+/**
+ * Class Database
+ * @package Keep
+ */
 class Database
 {
     use Table;
@@ -14,20 +18,37 @@ class Database
     use Operators;
     use Statement;
 
+    /**
+     * @var
+     */
     private $conn;
+
+    /**
+     * @var
+     */
     private $exec;
 
+    /**
+     * @param Driver $driver
+     * @return PDO
+     */
     public function connection(Driver $driver): PDO
     {
         return $this->conn = new PDO($driver->getDsn(), $driver->getUser(), $driver->getPass());
     }
 
+    /**
+     * @return Database
+     */
     public function prepare(): Database
     {
         $this->exec = $this->conn->prepare($this->getQuery());
         return $this;
     }
 
+    /**
+     * @return Database
+     */
     public function bind(): Database
     {
         foreach ($this->attributes as $key => $value) {
@@ -37,16 +58,25 @@ class Database
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function fetch()
     {
         return $this->exec->fetch(PDO::FETCH_OBJ);
     }
 
+    /**
+     * @return mixed
+     */
     public function fetchAll()
     {
         return $this->exec->fetchAll(PDO::FETCH_OBJ);
     }
 
+    /**
+     * @return null
+     */
     public function exec()
     {
         if ($this->exec->execute()) {
@@ -56,6 +86,9 @@ class Database
         return null;
     }
 
+    /**
+     * @return null
+     */
     public function execute()
     {
         $execute = $this->prepare()->bind()->exec();
@@ -65,6 +98,9 @@ class Database
         return $execute;
     }
 
+    /**
+     * @return string
+     */
     public function getQuery(): string
     {
         return trim($this->statement.' '.$this->clause.' '.$this->operators.' '.$this->keyword);

@@ -6,15 +6,30 @@ use PDO;
 use stdClass;
 use Exception;
 
+/**
+ * Class Model
+ * @package Keep
+ */
 class Model
 {
+    /**
+     * @var array
+     */
     public $attributes = [];
 
+    /**
+     * @param $key
+     * @param $value
+     */
     public function __set($key, $value): void
     {
         $this->attributes[$key] = $value;
     }
 
+    /**
+     * @param $key
+     * @return mixed|null
+     */
     public function __get($key)
     {
         if (array_key_exists($key, $this->attributes)) {
@@ -24,13 +39,22 @@ class Model
         return null;
     }
 
+    /**
+     * @param $findBy
+     * @param $attributes
+     * @return null|string
+     */
     public static function __callStatic($findBy, $attributes)
     {
         $findBy = str_replace('find_by_', '', $findBy);
 
         $explode = explode('_', $findBy);
 
-        $operator = $explode[1];
+        $operator = null;
+
+        if (isset($explode[1])) {
+            $operator = $explode[1];
+        }
 
         $obj = get_called_class();
         $obj = new $obj;
@@ -62,11 +86,18 @@ class Model
     }
 
 
+    /**
+     * @return mixed
+     */
     public function save()
     {
         return DB::create(self::getTable(), $this->attributes)->execute();
     }
 
+    /**
+     * @param int $id
+     * @return null|string
+     */
     public static function find(int $id)
     {
         $obj = get_called_class();
@@ -85,6 +116,9 @@ class Model
         return $obj;
     }
 
+    /**
+     * @return bool
+     */
     public static function all()
     {
         $find = DB::all(self::getTable())->execute();
@@ -96,11 +130,17 @@ class Model
         return false;
     }
 
+    /**
+     * @return mixed
+     */
     public function delete()
     {
         return DB::delete(self::getTable())->where('id', $this->id)->execute();
     }
 
+    /**
+     * @return mixed
+     */
     public function update()
     {
         $attributes = $this->attributes;
@@ -109,11 +149,14 @@ class Model
         return DB::update(self::getTable(), $attributes)->where('id', $this->id)->execute();
     }
 
+    /**
+     * @return string
+     */
     private static function getTable(): string
     {
         $table = explode('\\', strtolower(get_called_class()));
         $table = $table[count($table) - 1];
 
-        return $table;
+        return Inflect::pluralize($table);
     }
 }
