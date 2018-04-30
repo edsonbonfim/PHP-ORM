@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="edsononildo\keep-orm Test Suite">
+        <testsuite name="keeporm\keep Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
