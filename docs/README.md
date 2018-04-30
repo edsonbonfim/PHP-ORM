@@ -9,6 +9,22 @@ Keep-ORM 1.0 Documentation
 
 This is the full documentation for Keep-ORM 1.0.x
 
+Table of Contents
+=================
+
+* [Prerequisites](#prerequisites)
+* [Supported Databases](#supported-databases)
+* [Installation](#installation)
+* [Basic CRUD](#basic-crud)
+    * [Retrieve](#retrieve)
+    * [Create](#create)
+    * [Update](#update)
+    * [Delete](#delete)
+* [Contributing](#contributing)
+* [Security](#security)
+* [Credits](#credits)
+* [License](#license)
+
 Prerequisites
 =============
 
