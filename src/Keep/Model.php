@@ -1,6 +1,6 @@
 <?php
 
-namespace Sketch\Database;
+namespace Keep;
 
 use PDO;
 use stdClass;
@@ -82,7 +82,7 @@ class Model
             $obj->attributes = $find->fetchAll(PDO::FETCH_OBJ);
         }
 
-        return $obj->attributes;
+        return $obj;
     }
 
 

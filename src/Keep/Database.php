@@ -1,6 +1,6 @@
 <?php
 
-namespace Sketch\Database;
+namespace Keep;
 
 use PDO;
 use PDOStatement;
@@ -34,11 +34,7 @@ class Database
      */
     public function connection(Driver $driver): PDO
     {
-        try {
-            return $this->conn = new PDO($driver->getDsn(), $driver->getUser(), $driver->getPass());
-        } catch(PDOException $e) {
-            dd($e->getMessage());
-        }
+        return $this->conn = new PDO($driver->getDsn(), $driver->getUser(), $driver->getPass());
     }
 
     /**
@@ -46,13 +42,7 @@ class Database
      */
     public function prepare(): Database
     {
-        try {
-
         $this->exec = $this->conn->prepare($this->getQuery());
-        } catch(PDOException $e) {
-            dd($e->getMessage());
-        }
-        //dd($this->exec);
         return $this;
     }
 

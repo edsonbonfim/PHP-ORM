@@ -1,6 +1,6 @@
 <?php
 
-namespace Sketch\Database;
+namespace Keep;
 
 /**
  * Trait Statement
@@ -29,7 +29,6 @@ trait Statement
         $this->statement .= Tool::getAttributesKey($attributes);
         $this->statement .= '`) VALUES (:';
         $this->statement .= Tool::getAttributesValue($attributes) . ')';
-
         return $this;
     }
 
