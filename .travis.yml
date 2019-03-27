@@ -24,7 +24,7 @@ matrix:
       env: 'COMPOSER_FLAGS="--prefer-stable --prefer-lowest"'
 
 before_install:
-  - mysql -u root --password="" < test/sql/mysql.sql
+  - mysql -u root --password="" < tests/sql/mysql.sql
 
 before_script:
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
