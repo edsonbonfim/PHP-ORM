@@ -14,7 +14,8 @@ abstract class Model
 {
     public static function all(): array
     {
-        return self::bind(AR::execute("SELECT * FROM `".self::getTable()."`"));
+        $consulta = AR::execute("SELECT * FROM `".self::getTable()."`");
+        return is_null($consulta) ? [] : self::bind($consulta);
     }
 
     public static function find(string $where, array $values): array
