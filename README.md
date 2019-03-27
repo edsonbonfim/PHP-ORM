@@ -9,12 +9,128 @@
 
 Implementação do padrão de projeto active record em PHP
 
-## Install
+Table of Contents
+=================
 
-Via Composer
+* [Prerequisites](#prerequisites)
+* [Supported Databases](#supported-databases)
+* [Installation](#installation)
+* [Basic CRUD](#basic-crud)
+    * [Retrieve](#retrieve)
+    * [Create](#create)
+    * [Update](#update)
+    * [Delete](#delete)
+* [Contributing](#contributing)
+* [Security](#security)
+* [Credits](#credits)
+* [License](#license)
 
-``` bash
+Prerequisites
+=============
+
+* PHP 7.1+
+* PDO driver for your respective database
+
+Supported Databases
+===================
+
+* Cubrid
+* FreeTDS / Microsoft SQL Server / Sybase
+* Firebird
+* IBM DB2
+* IBM Informix Dynamic Server
+* MySQL 3.x/4.x/5.x
+* Oracle Call Interface
+* ODBC v3 (IBM DB2, unixODBC and win32 ODBC)
+* PostgreSQL
+* SQLite 3 and SQLite 2
+* Microsoft SQL Server / SQL Azure
+* 4D
+
+Installation
+============
+
+Require via [composer](https://getcomposer.org/download/)
+
+``` sh
 $ composer require bonfim/activerecord
+```
+
+Create an **index.php** file and require the autoload.php of composer
+
+```php
+<?php
+
+include 'vendor/autoload.php';
+```
+
+After that, let's to do all necessary configuration
+
+```php
+use Bonfim\ActiveRecord\ActiveRecord;
+
+ActiveRecord::config('mysql:host=localhost;dbname=testdb', 'username', 'password');
+```
+
+Basic CRUD
+==========
+
+### Retrieve
+
+These are your basic methods to find and retrieve records from your database:
+
+```php
+// Retrieve all records
+$posts = Post::all();
+
+// Retrieve records with specific keys
+$posts = Post::select(['title']);
+
+// Find records with a condition
+$posts = Post::find('WHERE id = ?', [1]);
+```
+
+### Create
+
+Here we create a new post by instantiating a new object and then invoking the save() method:
+
+```php
+$post = new Post();
+$post->title = 'My first blog post!!';
+$post->author_name = 'Edson Onildo';
+$post->save();
+```
+
+```sql
+INSERT INTO `posts` (`title`, `author_name`) VALUES ("My first blog post!!", "Edson Onildo");
+```
+
+### Update
+
+To update you would just need to find a record first and then change one of its attributes.
+
+```php
+$post = Post::find('WHERE `id` = ?', [1])[0];
+echo $post->title; // 'My first blog post!!'
+$post->title = 'Some title';
+$post->save();
+```
+
+```sql
+UPDATE `posts` SET title='Some title' WHERE id=1;
+```
+
+### Delete
+
+Deleting a record will not destroy the object. This means that it will call sql to delete the record in your database but you can still use the object if you need to.
+
+```php
+$post = Post::find('WHERE `id` = ?');
+$post->delete();
+```
+
+```sql
+DELETE FROM `posts` WHERE id=1;
 ```
 
 ## Change log

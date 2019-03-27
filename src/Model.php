@@ -22,7 +22,7 @@ abstract class Model
         return self::bind(AR::execute("SELECT * FROM `".self::getTable()."` ".$where, $values));
     }
 
-    public function select(array $keys, string $cond, array $values): array
+    public function select(array $keys, string $cond = '', array $values = []): array
     {
         $q = "SELECT ".implode(', ', $keys)." FROM ".self::getTable()." $cond";
         return self::bind(AR::execute($q, $values));
