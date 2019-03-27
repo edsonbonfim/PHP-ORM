@@ -11,7 +11,7 @@ class MysqlTest extends TestCase
 {
     protected function SetUp(): void
     {
-        ActiveRecord::config('mysql:host=localhost;dbname=demo', 'root', 'batatapalha123');
+        ActiveRecord::config('mysql:host=localhost;dbname=demo', 'root', '');
     }
 
     public function testEmptySelectAll()
