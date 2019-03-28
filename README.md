@@ -1,4 +1,5 @@
-# activerecord.php
+activerecord.php
+================
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
@@ -10,7 +11,7 @@
 Implementação do padrão de projeto active record em PHP
 
 Table of Contents
-=================
+-----------------
 
 * [Prerequisites](#prerequisites)
 * [Supported Databases](#supported-databases)
@@ -26,13 +27,13 @@ Table of Contents
 * [License](#license)
 
 Prerequisites
-=============
+-------------
 
 * PHP 7.1+
 * PDO driver for your respective database
 
 Supported Databases
-===================
+-------------------
 
 * MySQL
 * SQLite
@@ -40,7 +41,7 @@ Supported Databases
 * Oracle
 
 Installation
-============
+------------
 
 Require via [composer](https://getcomposer.org/download/)
 
@@ -65,7 +66,7 @@ ActiveRecord::config('mysql:host=localhost;dbname=testdb', 'username', 'password
 ```
 
 Basic CRUD
-==========
+----------
 
 ### Retrieve
 
@@ -125,30 +126,36 @@ $post->delete();
 DELETE FROM `posts` WHERE id=1;
 ```
 
-## Change log
+Change log
+----------
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-## Testing
+Testing
+-------
 
 ``` bash
 $ composer test
 ```
 
-## Contributing
+Contributing
+------------
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
 
-## Security
+Security
+--------
 
 If you discover any security related issues, please email inbox.edsononildo@gmail.com instead of using the issue tracker.
 
-## Credits
+Credits
+-------
 
 - [Edson Onildo][link-author]
 - [All Contributors][link-contributors]
 
-## License
+License
+-------
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
