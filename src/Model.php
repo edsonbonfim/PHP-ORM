@@ -56,9 +56,9 @@ abstract class Model
         return AR::execute($q, $values)->rowCount();
     }
 
-    public function delete(): ?PDOStatement
+    public function delete(): int
     {
-        return AR::execute("DELETE FROM `".self::getTable()."` WHERE `id` = ?", [$this->id]);
+        return AR::execute("DELETE FROM `".self::getTable()."` WHERE `id` = ?", [$this->id])->rowCount();
     }
 
     public static function deleteAll(): int
