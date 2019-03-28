@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Bonfim\ActiveRecord;
 
-use PHPUnit\Framework\TestCase;
-
-class MysqlTest extends TestCase
+class MysqlTest extends \PHPUnit\Framework\TestCase
 {
     protected function SetUp(): void
     {
-        ActiveRecord::config('mysql:host=localhost;dbname=demo', 'root', '');
+        ActiveRecord::config('mysql:host=localhost;dbname=demo', 'root', 'batatapalha123');
     }
 
     public function testEmptyAll()
@@ -63,8 +61,15 @@ class MysqlTest extends TestCase
         $this->assertCount(1, Post::find('WHERE `title` = ?', ['Post title updated']));
     }
 
+    public function testDelete()
+    {
+        $post = Post::find('WHERE `title` = ?', ['Post title updated']);
+        $this->assertCount(1, $post);
+        $this->assertEquals(1, $post[0]->delete());
+    }
+
     public function testDeleteAll()
     {
-        $this->assertEquals(20, Post::deleteAll());
+        $this->assertEquals(19, Post::deleteAll());
     }
 }
