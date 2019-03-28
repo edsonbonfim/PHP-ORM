@@ -31,8 +31,7 @@ class MysqlTest extends TestCase
 
     public function testSave()
     {
-        for ($i = 0; $i < 20; $i++)
-        {
+        for ($i = 0; $i < 20; $i++) {
             $post = new Post();
             $post->title = "Post title";
             $post->author_name = "Edson Onildo";
