@@ -1,5 +1,5 @@
 {
-    "name": "bonfim/activerecord",
+    "name": "edsononildo/orm",
     "type": "library",
     "description": "Implementação do padrão de projeto active record em PHP",
     "keywords": [
