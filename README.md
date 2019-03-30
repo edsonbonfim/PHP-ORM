@@ -46,7 +46,7 @@ Installation
 Require via [composer](https://getcomposer.org/download/)
 
 ``` sh
-$ composer require bonfim/activerecord
+$ composer require edsononildo/orm
 ```
 
 Create an **index.php** file and require the autoload.php of composer
