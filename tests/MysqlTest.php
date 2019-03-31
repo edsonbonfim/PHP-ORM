@@ -4,11 +4,19 @@ declare(strict_types=1);
 
 namespace Bonfim\ActiveRecord;
 
+use Bonfim\ActiveRecord\Tests\Model\Post;
+use Bonfim\ActiveRecord\Tests\Database\Migrations\PostSchema;
+
 class MysqlTest extends \PHPUnit\Framework\TestCase
 {
+    private $post;
+
     protected function SetUp(): void
     {
-        ActiveRecord::connection('mysql:host=localhost;dbname=demo', 'root', '');
+        ActiveRecord::conn('mysql:host=localhost;dbname=demo', 'root', 'batatapalha123');
+        $this->post = new PostSchema;
+        $this->post->up();
+        $this->post->run();
     }
 
     public function testEmptyAll()

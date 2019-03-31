@@ -4,6 +4,9 @@ namespace Bonfim\ActiveRecord;
 
 abstract class Schema extends ActiveRecord
 {
+    private $sql = '';
+    private $table;
+
     abstract public function up();
     abstract public function down();
 
@@ -12,19 +15,20 @@ abstract class Schema extends ActiveRecord
         $this->table = new Table();
     }
 
-    public $sql = '';
-
-    private $table;
-
     public function create(string $name, $callback)
     {
         call_user_func_array($callback, [$this->table]);
 
-        $q = "CREATE TABLE $name ({$this->getColumns()}";
+        $q = "CREATE TABLE IF NOT EXISTS $name ({$this->getColumns()}";
         $q .= $this->pk().$this->fk().$this->onUpdate().$this->onDelete();
         $q .= "\n) ENGINE=INNODB;";
 
         $this->sql = $q;
+    }
+
+    public function drop(string $name)
+    {
+        $this->sql = "DROP TABLE $name";
     }
 
     private function pk()
@@ -78,7 +82,6 @@ abstract class Schema extends ActiveRecord
 
     public function run()
     {
-        var_dump($this->sql);
         self::exec($this->sql);
     }
 }

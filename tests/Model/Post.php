@@ -1,6 +1,8 @@
 <?php
 
-namespace Bonfim\ActiveRecord;
+namespace Bonfim\ActiveRecord\Tests\Model;
+
+use Bonfim\ActiveRecord\Model;
 
 class Post extends Model
 {
