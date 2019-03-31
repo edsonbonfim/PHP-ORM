@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bonfim\ActiveRecord;
 
+use ICanBoogie\Inflector;
 use PDO;
 use PDOStatement;
 use ReflectionClass;
@@ -76,7 +77,7 @@ abstract class Model extends AR
     private static function getTable(): string
     {
         $class = new ReflectionClass(get_called_class());
-        return Inflect::pluralize(strtolower($class->getShortName()));
+        return strtolower(Inflector::get()->pluralize($class->getShortName()));
     }
 
     private function getProperties(&$keys, &$values)
