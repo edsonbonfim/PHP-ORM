@@ -18,7 +18,7 @@ class ActiveRecord
     private static $dbh;
     private static $sth;
 
-    public static function conn(string $dsn, string $user, string $pass): void
+    public static function conn(string $dsn, string $user, string $pass)
     {
         ActiveRecord::$dbh = new PDO($dsn, $user, $pass);
         ActiveRecord::$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -42,7 +42,7 @@ class ActiveRecord
         return null;
     }
 
-    protected static function exec(string $sql): int
+    public static function exec(string $sql): int
     {
         return ActiveRecord::$dbh->exec($sql);
     }
