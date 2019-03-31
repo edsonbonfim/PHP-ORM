@@ -16,10 +16,7 @@ class MysqlTest extends \PHPUnit\Framework\TestCase
         ActiveRecord::conn('mysql:host=localhost', 'root', '');
         ActiveRecord::exec('CREATE DATABASE IF NOT EXISTS `demo`');
         ActiveRecord::exec('USE `demo`');
-    }
 
-    public function createTable()
-    {
         $this->post = new PostSchema;
         $this->post->up();
         $this->post->run();
