@@ -13,10 +13,13 @@ class MysqlTest extends \PHPUnit\Framework\TestCase
 
     protected function SetUp(): void
     {
-        ActiveRecord::conn('mysql:host=localhost', 'root', '');
+        ActiveRecord::conn('mysql:host=localhost', 'root', 'batatapalha123');
         ActiveRecord::exec('CREATE DATABASE IF NOT EXISTS `demo`');
         ActiveRecord::exec('USE `demo`');
+    }
 
+    public function createTable()
+    {
         $this->post = new PostSchema;
         $this->post->up();
         $this->post->run();
@@ -82,5 +85,10 @@ class MysqlTest extends \PHPUnit\Framework\TestCase
     public function testDeleteAll()
     {
         $this->assertEquals(19, Post::deleteAll());
+    }
+
+    public function dropTable()
+    {
+        $this->post->down();
     }
 }
