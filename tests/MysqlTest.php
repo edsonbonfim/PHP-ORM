@@ -13,7 +13,7 @@ class MysqlTest extends \PHPUnit\Framework\TestCase
 
     protected function SetUp(): void
     {
-        ActiveRecord::conn('mysql:host=localhost;dbname=demo', 'root', 'batatapalha123');
+        ActiveRecord::conn('mysql:host=localhost;dbname=demo', 'root', '');
         $this->post = new PostSchema;
         $this->post->up();
         $this->post->run();
