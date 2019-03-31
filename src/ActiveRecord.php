@@ -17,8 +17,9 @@ class ActiveRecord
 {
     private static $dbh;
     private static $sth;
+    private static $config;
 
-    public static function config(string $dsn, string $user, string $pass): void
+    public static function connection(string $dsn, string $user, string $pass): void
     {
         ActiveRecord::$dbh = new PDO($dsn, $user, $pass);
         ActiveRecord::$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

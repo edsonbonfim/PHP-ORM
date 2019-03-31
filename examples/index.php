@@ -7,7 +7,7 @@ use Bonfim\ActiveRecord\Examples\Database\Migrations\TweetSchema;
 use Bonfim\ActiveRecord\Examples\Database\Migrations\UserSchema;
 
 
-ActiveRecord::config('mysql:host=localhost;dbname=note', 'root', 'batatapalha123');
+ActiveRecord::connection('mysql:host=localhost;dbname=note', 'root', 'batatapalha123');
 
 $tweet = new TweetSchema();
 $tweet->up();

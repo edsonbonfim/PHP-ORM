@@ -8,7 +8,7 @@ class MysqlTest extends \PHPUnit\Framework\TestCase
 {
     protected function SetUp(): void
     {
-        ActiveRecord::config('mysql:host=localhost;dbname=demo', 'root', '');
+        ActiveRecord::connection('mysql:host=localhost;dbname=demo', 'root', '');
     }
 
     public function testEmptyAll()
