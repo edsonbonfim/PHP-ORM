@@ -10,7 +10,7 @@ use ReflectionClass;
 
 use Bonfim\ActiveRecord\ActiveRecord as AR;
 
-abstract class Model
+abstract class Model extends AR
 {
     public static function all(): array
     {

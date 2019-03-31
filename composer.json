@@ -31,7 +31,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Bonfim\\ActiveRecord\\": "tests"
+            "Bonfim\\ActiveRecord\\Tests\\": "tests",
+            "Bonfim\\ActiveRecord\\Examples\\": "examples"
         }
     },
     "scripts": {

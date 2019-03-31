@@ -13,7 +13,7 @@ namespace Bonfim\ActiveRecord;
 use PDO;
 use PDOStatement;
 
-final class ActiveRecord
+class ActiveRecord
 {
     private static $dbh;
     private static $sth;
@@ -21,6 +21,7 @@ final class ActiveRecord
     public static function config(string $dsn, string $user, string $pass): void
     {
         ActiveRecord::$dbh = new PDO($dsn, $user, $pass);
+        ActiveRecord::$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     private static function getConn(): PDO
@@ -33,11 +34,16 @@ final class ActiveRecord
         return ActiveRecord::$sth = ActiveRecord::getConn()->prepare(trim($query));
     }
 
-    public static function execute(string $query, array $parameters = []): ?PDOStatement
+    protected static function execute(string $query, array $parameters = []): ?PDOStatement
     {
         if (ActiveRecord::prepare($query)->execute($parameters)) {
             return ActiveRecord::$sth;
         }
         return null;
+    }
+
+    protected static function exec(string $sql): int
+    {
+        return ActiveRecord::$dbh->exec($sql);
     }
 }
