@@ -24,6 +24,13 @@ abstract class Model extends AR
         return is_null($consulta) ? [] : self::bind($consulta);
     }
 
+    public static function only(array $keys)
+    {
+        $sql = "SELECT ".implode(', ', $keys). " FROM ".self::getTable();
+        $consulta = AR::execute($sql);
+        return is_null($consulta) ? [] : self::bind($consulta);
+    }
+
     public static function select(array $keys, string $cond = '', array $values = []): array
     {
         $q = "SELECT ".implode(', ', $keys)." FROM ".self::getTable()." $cond";
