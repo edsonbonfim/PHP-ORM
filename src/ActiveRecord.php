@@ -2,12 +2,6 @@
 
 declare(strict_types=1);
 
-/**
- * activerecord.php é uma biblioteca PHP que permite ao desenvolvedor
- * trabalhar com banco de dados usando o padrão de projeto Active Record
- * (https://en.wikipedia.org/wiki/Active_record_pattern)
- */
-
 namespace Bonfim\ActiveRecord;
 
 use PDO;
@@ -34,7 +28,7 @@ class ActiveRecord
         return ActiveRecord::$sth = ActiveRecord::getConn()->prepare(trim($query));
     }
 
-    protected static function execute(string $query, array $parameters = []): ?PDOStatement
+    public function execute(string $query, array $parameters = []): ?PDOStatement
     {
         if (ActiveRecord::prepare($query)->execute($parameters)) {
             return ActiveRecord::$sth;
@@ -45,5 +39,23 @@ class ActiveRecord
     public static function exec(string $sql): int
     {
         return ActiveRecord::$dbh->exec($sql);
+    }
+
+    public static function transaction($callback)
+    {
+        self::$dbh->beginTransaction();
+
+        try {
+            $callback();
+            self::$dbh->commit();
+        } catch (\Exception $e) {
+            self::$dbh->rollBack();
+            throw $e;
+        }
+    }
+
+    protected function lastInsertId()
+    {
+        return self::$dbh->lastInsertId();
     }
 }

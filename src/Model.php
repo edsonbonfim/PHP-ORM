@@ -4,104 +4,90 @@ declare(strict_types=1);
 
 namespace Bonfim\ActiveRecord;
 
-use ICanBoogie\Inflector;
-use PDO;
-use PDOStatement;
 use ReflectionClass;
+use ICanBoogie\Inflector;
 
-use Bonfim\ActiveRecord\ActiveRecord as AR;
-
-abstract class Model extends AR
+abstract class Model extends QueryBuilderFacade
 {
-    public static function all(): array
+    protected static $table = null;
+    private $properties = [];
+
+    protected static function getBuilder(): QueryBuilder
     {
-        $consulta = AR::execute("SELECT * FROM `".self::getTable()."`");
-        return is_null($consulta) ? [] : self::bind($consulta);
+        return (new QueryBuilder(get_called_class()))
+            ->from(self::getTable());
     }
 
-    public static function find(string $where, array $values): array
+    public static function join($table, $assoc = null): QueryBuilder
     {
-        $consulta = AR::execute("SELECT * FROM `".self::getTable()."` ".$where, $values);
-        return is_null($consulta) ? [] : self::bind($consulta);
-    }
-
-    public static function only(array $keys)
-    {
-        $sql = "SELECT ".implode(', ', $keys). " FROM ".self::getTable();
-        $consulta = AR::execute($sql);
-        return is_null($consulta) ? [] : self::bind($consulta);
-    }
-
-    public static function select(array $keys, string $cond = '', array $values = []): array
-    {
-        $q = "SELECT ".implode(', ', $keys)." FROM ".self::getTable()." $cond";
-        $consulta = AR::execute($q, $values);
-        return is_null($consulta) ? [] : self::bind($consulta);
-    }
-
-    public function save(): int
-    {
-        $this->getProperties($keys, $values);
-
-        $q = "INSERT INTO `".self::getTable()."` (`".implode('`, `', $keys)."`) VALUES (";
-        for ($i = 0; $i < count($keys) - 1; $i++) {
-            $q .= "?, ";
+        if (!$assoc) {
+            $assoc = "{$table}_id";
         }
-        $q .= "?)";
 
-        return AR::execute($q, $values)->rowCount();
+        return self::getBuilder()->join(static::$table, $table, $assoc);
     }
 
-    public function update(): int
+    /**
+     * @return static|null
+     */
+    public static function first(): ?self
     {
-        $this->getProperties($keys, $values);
-        $values[] = $this->id;
-
-        $q = "UPDATE `".self::getTable()."` SET " . "`";
-        $q .= implode('` = ?, `', $keys);
-        $q .= "` = ? WHERE `id` = ?";
-
-        return AR::execute($q, $values)->rowCount();
+        return self::getBuilder()->first();
     }
 
-    public function delete(): int
+    public function save()
     {
-        return AR::execute("DELETE FROM `".self::getTable()."` WHERE `id` = ?", [$this->id])->rowCount();
+        return self::getBuilder()->insert($this->getProperties());
     }
 
-    public static function deleteAll(): int
+    public function delete()
     {
-        return AR::execute("DELETE FROM `".self::getTable()."`")->rowCount();
+        $this->where('id', $this->id);
+        return self::getBuilder()->delete();
     }
 
-    private static function getTable(): string
+    public static function getTable(): string
     {
+        if (static::$table !== null) {
+            return (string) static::$table;
+        }
+
         $class = new ReflectionClass(get_called_class());
         return strtolower(Inflector::get()->pluralize($class->getShortName()));
     }
 
-    private function getProperties(&$keys, &$values)
+    private function getProperties(): array
     {
-        $properties = (new ReflectionClass(get_called_class()))->getProperties();
+        $res = [];
+
+        $properties = (new ReflectionClass($this))->getProperties() ?? [];
+        $properties = array_merge($properties, $this->properties);
 
         foreach ($properties as $property) {
-            $keys[]   = $property->name;
-            $values[] = $this->{$property->name};
+            if ($this->{$property->name} === null) {
+                continue;
+            }
+            $res[$property->name] = $this->{$property->name};
         }
+
+        return $res;
     }
 
-    private static function bind(PDOStatement $exec): array
+    public function __set($name, $value)
     {
-        $resp  = [];
-        $class = get_called_class();
+        $property = new \stdClass();
 
-        foreach ($exec->fetchAll(PDO::FETCH_OBJ) as $i => $fetch) {
-            $resp[$i] = new $class;
-            foreach ($fetch as $k => $v) {
-                $resp[$i]->$k = $v;
-            }
+        $property->name  = $name;
+        $property->value = $value;
+
+        $this->properties[$name] = $property;
+    }
+
+    public function __get($name)
+    {
+        if (property_exists($this, $name)) {
+            return null;
         }
-
-        return $resp;
+        return $this->properties[$name]->value;
     }
 }
