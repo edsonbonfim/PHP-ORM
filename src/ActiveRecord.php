@@ -14,7 +14,9 @@ class ActiveRecord
 
     public static function conn(string $dsn, string $user, string $pass)
     {
-        ActiveRecord::$dbh = new PDO($dsn, $user, $pass);
+        ActiveRecord::$dbh = new PDO($dsn, $user, $pass, [
+            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+        ]);
         ActiveRecord::$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
@@ -30,15 +32,21 @@ class ActiveRecord
 
     public function execute(string $query, array $parameters = []): ?PDOStatement
     {
+        $query = trim(preg_replace('/\s\s*/', ' ', $query));
         if (ActiveRecord::prepare($query)->execute($parameters)) {
             return ActiveRecord::$sth;
         }
         return null;
     }
 
-    public static function exec(string $sql): int
+    public function exec(string $sql): ?PDOStatement
     {
-        return ActiveRecord::$dbh->exec($sql);
+        $sql = trim(preg_replace('/\s\s*/', ' ', $sql));
+        var_dump($sql);
+        if (ActiveRecord::$dbh->exec($sql) !== false) {
+            return self::$sth;
+        }
+        return null;
     }
 
     public static function transaction($callback)

@@ -27,8 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Bonfim\\ActiveRecord\\": "src",
-            "App\\Model\\": "examples"
+            "Bonfim\\ActiveRecord\\": "src"
         }
     },
     "autoload-dev": {

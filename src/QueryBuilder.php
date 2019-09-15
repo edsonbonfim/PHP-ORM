@@ -17,6 +17,7 @@ class QueryBuilder extends ActiveRecord
     private $union = null;
     private $insert = null;
     private $values = null;
+    private $group = null;
 
     public function __construct($class = null)
     {
@@ -56,8 +57,7 @@ class QueryBuilder extends ActiveRecord
         $this->where['column'] .= " $cond $column ";
 
         if ($value) {
-            $this->where['column'] .= "$op ? ";
-            $this->where['value'][] = $value;
+            $this->where['column'] .= "$op '" . addslashes((string) $value) . "' ";
         }
 
         return $this;
@@ -121,12 +121,18 @@ class QueryBuilder extends ActiveRecord
         return $this;
     }
 
+    public function group($column): self
+    {
+        $this->group = $column;
+        return $this;
+    }
+
     /**
      * @return static[]|stdClass[]|null
      */
-    public function get()
+    public function get(array $args = [])
     {
-        $res = $this->execute($this->getSelectQuery(), $this->where['value'])->fetchAll(\PDO::FETCH_OBJ);
+        $res = $this->execute($this->getSelectQuery())->fetchAll(\PDO::FETCH_OBJ);
 
         if (!$res) {
             return null;
@@ -140,28 +146,27 @@ class QueryBuilder extends ActiveRecord
 
         foreach ($res as $row) {
             $class = $this->class;
-            $class = new $class;
+            $class = new $class(...$args);
 
             foreach ($row as $key => $value) {
                 $class->$key = $value;
             }
 
-            $array[] = $class;
+            $array[$row->id] = $class;
         }
 
 
         return $array;
     }
 
-
     /**
      * @return static|null
      */
-    public function first()
+    public function first(array $args = [])
     {
         $this->limit(1);
 
-        $res = $this->execute($this->getSelectQuery(), $this->where['value'])->fetch(\PDO::FETCH_OBJ);
+        $res = $this->execute($this->getSelectQuery())->fetch(\PDO::FETCH_OBJ);
 
         if (!$res) {
             return null;
@@ -172,7 +177,7 @@ class QueryBuilder extends ActiveRecord
         }
 
         $class = $this->class;
-        $class = new $class;
+        $class = new $class(...$args);
 
         foreach ($res as $key => $value) {
             $class->$key = $value;
@@ -226,16 +231,8 @@ class QueryBuilder extends ActiveRecord
     {
         $query  = "INSERT INTO $this->table (";
         $query .= implode(', ', array_keys($data));
-        $query .= ') VALUES (';
-
-        $values = array_values($data);
-
-        $data = array_map(function () {
-            return '?';
-        }, $data);
-
-        $query .= implode(', ', $data);
-        $query .= ')';
+        $query .= ") VALUES ('";
+        $query .= implode("', '", array_values($data)) . "'";
 
         $this->execute($query, $values);
 
@@ -245,7 +242,7 @@ class QueryBuilder extends ActiveRecord
     public function delete()
     {
         $query = "DELETE FROM $this->table WHERE {$this->where['column']}";
-        return $this->execute($query, $this->where['value'])->rowCount();
+        return $this->execute($query)->rowCount();
     }
 
     public function exists()
@@ -260,6 +257,10 @@ class QueryBuilder extends ActiveRecord
 
         if (!empty($this->order)) {
             $query .= "ORDER BY $this->order ";
+        }
+
+        if ($this->group) {
+            $query .= "GROUP BY $this->group ";
         }
 
         if ($this->limit) {
